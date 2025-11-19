@@ -166,6 +166,108 @@ During each simulation run, key signals are logged in Simulink and exported for 
   </p>
  </section>
 
+<section class="project">
+  <h3>Deep Neural Network–Based Parameter Estimation of PV One-Diode Models from I–V Curve Key Points
+    <span class="date">(2024)</span>
+  </h3>
+
+  <p>
+    In this project, I designed a deep neural-network framework to estimate the physical parameters of the
+    one-diode photovoltaic (PV) model directly from a small set of key points extracted from the I–V curve.
+    The target parameters are the series resistance $R_s$, shunt resistance $R_{sh}$, light-generated current
+    $I_L$, diode reverse saturation current $I_s$, and diode ideality factor $A$, which completely define the
+    single-diode equation of a PV module.
+  </p>
+
+  <p>
+    Accurate estimation of these parameters is essential for PV module modelling, performance prediction under
+    varying operating conditions, and degradation or fault analysis. Classical approaches either rely on analytical
+    formulas using a few key points, or on iterative numerical optimization using the full I–V curve. Analytical
+    methods are fast but sensitive to measurement noise and constrained by the location of the sampled points,
+    while numerical methods are computationally expensive and require good initial guesses. In this work, I treat
+    parameter extraction as a supervised regression problem and use a deep neural network to learn the mapping from
+    compact I–V features to the underlying model parameters.
+  </p>
+
+  <h4>Methodology</h4>
+
+  <p>
+    The starting point is the standard one-diode PV model:
+  </p>
+
+  <p style="text-align:center;">
+    \[
+      I = I_L - I_s\left[\exp\!\left(\frac{V + I R_s}{A V_T}\right) - 1\right]
+          - \frac{V + I R_s}{R_{sh}},
+    \]
+  </p>
+
+  <p>
+    where $V_T$ is the thermal voltage and $R_s$, $R_{sh}$, $I_L$, $I_s$, and $A$ are the unknown parameters to be
+    estimated. Instead of feeding the entire measured I–V curve to the model, I extract a compact set of key points
+    and local slopes, for example:
+  </p>
+
+  <ul>
+    <li>Samples in the short-circuit region near $(V \approx 0,\, I \approx I_{sc})$</li>
+    <li>Intermediate points around the knee of the I–V curve</li>
+    <li>Samples in the open-circuit region with $I \approx 0$</li>
+    <li>Local slopes $dI/dV$ at selected points along the curve</li>
+  </ul>
+
+  <p>
+    These key points and derivatives form the input feature vector to the neural network and play a similar role
+    to the analytical features used in classical parameter-extraction formulas.
+  </p>
+
+  <h4>Dataset generation and network training</h4>
+
+  <p>
+    To train the network, I generated a large synthetic dataset by sampling physically plausible values of
+    $(R_s, R_{sh}, I_L, I_s, A)$ within predefined ranges, computing the corresponding I–V curves from the
+    one-diode model under different irradiance and temperature conditions, and extracting the same key-point
+    features from each curve. Each feature vector is paired with its “ground-truth” parameter vector, resulting
+    in a labeled dataset suitable for deep regression.
+  </p>
+
+  <p>
+    I then implemented a fully connected deep neural network (multi-layer perceptron) that takes the key-point
+    feature vector as input and outputs the five model parameters. The network is trained using mean-squared error
+    loss, with normalization and regularization (e.g. early stopping / dropout) to achieve good generalization
+    across operating conditions.
+  </p>
+
+  <h4>Evaluation and applications</h4>
+
+  <p>
+    After training, the estimated parameters
+    $(\hat{R}_s, \hat{R}_{sh}, \hat{I}_L, \hat{I}_s, \hat{A})$
+    are validated by reconstructing the I–V curves and comparing them with the original curves used to generate
+    the data. Performance is evaluated using metrics such as RMSE between true and reconstructed currents along
+    the I–V curve, demonstrating that the DNN can approximate the inverse mapping from key I–V points to model
+    parameters with high accuracy.
+  </p>
+
+  <p>
+    The proposed approach provides a fast, non-iterative way to estimate PV model parameters from a limited number
+    of I–V samples, making it suitable for online monitoring. The estimated parameters can be used for tracking
+    PV module degradation, fault detection (e.g. changes in $R_s$ or $R_{sh}$ due to aging or hot spots), and
+    improved PV system simulation and control.
+  </p>
+
+  <p><strong>My role in this project:</strong></p>
+  <ul>
+    <li>Formulated PV parameter estimation as a deep-learning regression problem based on the one-diode model.</li>
+    <li>Designed key-point feature extraction from I–V curves and implemented synthetic dataset generation over a wide range of operating conditions.</li>
+    <li>Built, trained and evaluated deep neural networks to estimate $(R_s, R_{sh}, I_L, I_s, A)$ from the key-point features.</li>
+    <li>Validated the method by reconstructing I–V curves from the estimated parameters and analyzing error metrics across different scenarios.</li>
+  </ul>
+
+  <p><strong>Tools &amp; technologies:</strong>
+    Python, deep learning framework (TensorFlow / PyTorch), NumPy, SciPy, Matplotlib; PV one-diode modelling; data preprocessing and regression evaluation.
+  </p>
+</section>
+
   
  <section class="project">
   <h3 id="1">Developing Regression Methods for Estimating the Elastic Modulus of Rock Using Machine Learning<span class="date"> (2024)</span></h3>
@@ -282,6 +384,7 @@ The final outcome includes accurate machine learning models for predicting elast
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
