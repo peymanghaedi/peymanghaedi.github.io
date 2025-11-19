@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <title>Projects - Peyman Ghaedi</title>
   <link rel="stylesheet" href="style.css" />
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],   // فرمول inline
+      displayMath: [['$$', '$$'], ['\\[', '\\]']] // فرمول بلوکی
+    }
+  };
+</script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
 </head>
 <body>
   <header>
@@ -17,6 +29,93 @@
       </ul>
     </nav>
   </header>
+
+<section class="project" id="pv-tilt-shahrekord">
+    <h3>Optimization of PV Tilt Angle for Shahrekord Using PVsyst Data and ODE-Based Numerical Methods in Python
+      <span class="date">(2025)</span>
+    </h3>
+
+    <p>
+      In this project, I developed a computational framework to determine the optimal tilt angle of photovoltaic (PV)
+      panels for the city of Shahrekord, with the objective of maximizing the annual energy yield of a fixed-tilt,
+      south-facing PV system. PVsyst is used strictly as a provider of high-quality irradiance and meteorological
+      data for Shahrekord, while all modeling, ODE-based time marching and tilt optimization are carried out
+      independently in Python.
+    </p>
+
+    <h4>Data acquisition (PVsyst as the climate and irradiance source)</h4>
+    <p>
+      A base PV system was configured in PVsyst for Shahrekord, including the geographic coordinates, a corresponding
+      meteorological file, and a fixed-tilt, south-facing PV array (e.g. 50 kWp) with fixed module, inverter and system-loss
+      assumptions. From this setup, I exported time-series data (typically as CSV), including:
+    </p>
+    <ul>
+      <li>Global Horizontal Irradiance (GHI)</li>
+      <li>Diffuse and, where available, direct beam irradiance</li>
+      <li>Ambient temperature and other relevant meteorological variables</li>
+    </ul>
+    <p>
+      These data serve as the environmental input for the independent solar geometry and PV performance model implemented in Python.
+    </p>
+
+    <h4>Solar geometry and tilted-plane irradiance (ODE-like time-marching model)</h4>
+    <p>
+      Using classical solar geometry relations, I modeled solar declination, hour angle, zenith angle and solar azimuth
+      as functions of time (day and hour of the year). For a given tilt angle $\\beta$, the incidence angle on the PV plane
+      is computed and used to derive the effective irradiance on the tilted surface $G_T(\\beta, t)$.
+    </p>
+    <p>
+      These relationships are implemented as an ODE-like, time-marching model over a full year: for each time step
+      (hourly or sub-hourly), the code combines PVsyst irradiance data with solar geometry equations to calculate the
+      instantaneous PV power output $P(\\beta, t)$ as a function of tilt, time and operating conditions.
+    </p>
+
+    <h4>Annual energy objective function and numerical optimization</h4>
+    <p>
+      The core quantity of interest is the annual energy yield of the system as a function of tilt angle,
+      defined as
+    </p>
+    <p style="text-align:center;">
+      \\[
+        E_{\\text{year}}(\\beta) = \\int_{\\text{year}} P(\\beta, t)\\, dt
+      \\]
+    </p>
+    <p>
+      In practice, this integral is implemented as a numerical sum over all time steps of the year, so that,
+      for any given $\\beta$, the model returns a scalar value $E_{\\text{year}}(\\beta)$ in kWh/year.
+      The instantaneous power model can use either a simple constant-efficiency approximation or
+      a more detailed efficiency function depending on irradiance and cell temperature.
+    </p>
+    <p>
+      The tilt optimization problem is then formulated as a one-dimensional maximization:
+    </p>
+    <p style="text-align:center;">
+      \\[
+        \\max_{\\beta \\in [\\beta_{\\min}, \\beta_{\\max}]} E_{\\text{year}}(\\beta).
+      \\]
+    </p>
+    <p>
+      In Python, I solve this by minimizing the negative annual energy, $-E_{\\text{year}}(\\beta)$, using SciPy’s
+      scalar optimization routines (e.g. <code>minimize_scalar</code>) over a prescribed search interval (e.g. 0°–60°).
+      For multi-parameter extensions (such as joint optimization of tilt and azimuth), global optimizers like
+      <code>differential_evolution</code> can also be employed.
+    </p>
+
+    <h4>Results, validation and extensions</h4>
+    <p>
+      The resulting framework produces the “annual energy vs. tilt angle” curve for Shahrekord and identifies the
+      optimal fixed tilt angle that maximizes yearly energy yield. The optimal angle is compared against empirical
+      rules (latitude-based formulas) and against similar case studies reported in the literature (e.g. for Duhok),
+      demonstrating that an ODE-based model driven by PVsyst data can closely reproduce and extend existing findings.
+    </p>
+    <p>
+      The methodology is easily extendable to monthly or seasonal tilt optimization, comparison of different PV
+      technologies (Crystalline Si, CdTe, CIS, etc.), and sensitivity analyses with respect to system losses,
+      installed capacity and array orientation.
+    </p>
+    </section>
+
+  
  <section class="project">
   <h3 id="1">CFD Analysis of Hydrodynamic Forces on a Circular Cylinder in Water<span class="date"> (2025)</span></h3>
 
@@ -175,6 +274,7 @@ The final outcome includes accurate machine learning models for predicting elast
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
