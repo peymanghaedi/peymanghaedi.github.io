@@ -140,3 +140,29 @@ footer {
   padding-left: 20px;
 }
 
+/* container for GIF-like videos */
+.project-media.gif-like {
+  display: flex;
+  gap: 12px;           /* فاصله بین ویدئوها */
+  flex-wrap: wrap;     /* روی صفحه‌های کوچک اجازه بده زیر هم برن */
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+/* هر ویدئو (مثل یک GIF) */
+.project-media.gif-like .project-video {
+  flex: 1 1 30%;       /* تقریباً یک‌سوم عرض برای هر ویدئو */
+  max-width: 100%;
+  border-radius: 8px;  /* گوشه‌های کمی گرد، سلیقه‌ای */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* روی موبایل و تبلت باریک، ویدئوها زیر هم */
+@media (max-width: 768px) {
+  .project-media.gif-like .project-video {
+    flex: 1 1 100%;
+  }
+}
+
