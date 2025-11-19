@@ -152,6 +152,21 @@
   </p>
 </section>
 
+<section class="project">
+  <h3 id="1">Simulation of DC Electrical Faults in PV Systems Using MATLAB/Simulink for Data Generation under Normal and Fault Conditions<span class="date"> (2024)</span></h3>
+  <img src="image/fault impedance.jpg" alt="fault impedance" class="project-img">
+  <p>
+    In this project, I developed a detailed MATLAB/Simulink model of the DC side of a photovoltaic (PV) system in order to simulate electrical faults and systematically generate data under both normal and faulty operating conditions. The main goal is to reproduce realistic voltage and current waveforms for different DC fault scenarios and to structure these signals into a labeled dataset that can be used to design and evaluate fault detection and diagnosis algorithms for PV systems.
+The simulated system includes a PV array, a DC–DC converter and a DC load (or DC-link interface), modeled in Simulink to capture the dynamic behavior of the circuit. The PV array is represented by an electrical equivalent model (e.g., single-diode or Simscape PV block), so that changes in irradiance, temperature and fault parameters are reflected in the terminal voltage–current characteristics. The converter and load are modeled with appropriate control and measurement blocks to monitor the impact of faults on the overall system.
+DC faults are injected on the PV side and along the DC link, including open-circuit faults, line-to-line short circuits and gradual degradation of PV modules or strings. For each scenario, the transient and steady-state responses of the system are analyzed, with emphasis on how the fault modifies the shape and amplitude of DC voltage and current waveforms at different measurement points (PV terminals, converter input/output, and load).
+During each simulation run, key signals are logged in Simulink and exported for offline processing. Normal-operation cases and each specific fault type are labeled and organized into a structured dataset. This dataset is intended to serve as training and test data for data-driven or hybrid fault detection models (for example, machine learning or signal-processing-based classifiers) that can distinguish between healthy and faulty operation in PV systems based on DC-side measurements.
+  </p>
+  <p>
+    🔗 <a href="https://github.com/yourusername/pv-fault-detection" target="_blank">View on GitHub</a>
+  </p>
+ </section>
+
+  
  <section class="project">
   <h3 id="1">Developing Regression Methods for Estimating the Elastic Modulus of Rock Using Machine Learning<span class="date"> (2024)</span></h3>
   <img src="image/rock.JPG" alt="Smart Fault Detection in PV Systems" class="project-img">
@@ -267,6 +282,7 @@ The final outcome includes accurate machine learning models for predicting elast
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
