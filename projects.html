@@ -17,6 +17,26 @@
       </ul>
     </nav>
   </header>
+  <section class="project">
+  <h3 id="1">CFD Analysis of Hydrodynamic Forces on a Circular Cylinder in Water<span class="date"> (2025)</span></h3>
+
+  <div class="project-media video-grid">
+    <video src="videos/cylinder-laminar.mp4" controls muted playsinline class="project-video"></video>
+    <video src="videos/cylinder-transitional.mp4" controls muted playsinline class="project-video"></video>
+    <video src="videos/cylinder-turbulent.mp4" controls muted playsinline class="project-video"></video>
+  </div>
+
+  <p>
+    In this project, I performed a detailed computational fluid dynamics (CFD) analysis of the flow around a circular cylinder submerged in water, with the objective of quantifying the hydrodynamic loads acting on the structure. The focus was on accurately predicting the drag and lift forces and computing the corresponding non-dimensional drag coefficient (Cd) under different flow regimes.
+    The study was based on the numerical solution of the incompressible Navier–Stokes equations for external flow around a bluff body. A two-dimensional computational domain containing a circular cylinder was created, and a mesh was generated with local refinement near the cylinder wall to resolve the boundary layer and flow separation region. Appropriate boundary conditions were applied, including a uniform inflow velocity profile, a pressure outlet, and a no-slip condition on the cylinder surface.
+    Simulations were carried out for a range of Reynolds numbers to capture laminar, transitional, and turbulent flow regimes. Depending on the regime, either a laminar flow model or a suitable turbulence model was employed. For each case, the pressure and viscous shear stress distributions along the cylinder surface were obtained, from which the instantaneous and time-averaged drag and lift forces were computed. These forces were then used to calculate the drag coefficient and compare its behavior across different regimes.
+    The results provided insight into key flow phenomena such as flow separation, wake formation, and vortex shedding, and showed how the magnitude and temporal behavior of drag, lift, and Cd evolve as the flow transitions from laminar to turbulent. 
+  </p>
+  <p>
+    🔗 <a href="https://github.com/yourusername/pv-fault-detection" target="_blank">View on GitHub</a>
+  </p>
+</section>
+
  <section class="project">
   <h3 id="1">Developing Regression Methods for Estimating the Elastic Modulus of Rock Using Machine Learning<span class="date"> (2024)</span></h3>
   <img src="image/rock.JPG" alt="Smart Fault Detection in PV Systems" class="project-img">
@@ -132,3 +152,4 @@ The final outcome includes accurate machine learning models for predicting elast
   <script src="script.js"></script>
 </body>
 </html>
+
