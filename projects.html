@@ -53,7 +53,121 @@ Finally, I apply time–frequency analysis methods such as the Short-Time Fourie
   
   </section>
 
+ <section class="project">
+  <h3 id="17">EEG Signal Analysis for Epileptic Seizure Detection <span class="date"> (2025)</span></h3>
+  <img src="image/EEG.jpg" alt="EEG Signal Analysis for Epileptic Seizure Detection" class="project-img">
+  <div class="section">
+        <p>
+            This project focuses on the analysis of electroencephalogram (EEG) signals collected from 10 epileptic patients across different stages of seizure activity. The primary objective is to extract meaningful features and accurately classify brain states using machine learning techniques.
+        </p>
+    </div>
 
+    <div class="section">
+        <h2>Dataset Description</h2>
+        <p>The dataset consists of three physiological states:</p>
+        <ul>
+            <li><strong>Pre-ictal</strong>: Before seizure</li>
+            <li><strong>Ictal</strong>: During seizure</li>
+            <li><strong>Interictal</strong>: Between seizures</li>
+        </ul>
+
+        <div class="highlight">
+            <p><strong>Sampling Frequency:</strong> 200 Hz</p>
+            <p><strong>Samples per Segment:</strong> 1024</p>
+            <p><strong>Duration:</strong> 5.12 seconds</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Signal Analysis</h2>
+
+        <h3>1. Time Domain Features</h3>
+        <ul>
+            <li>Mean</li>
+            <li>Variance</li>
+            <li>Standard Deviation</li>
+            <li>Signal Energy</li>
+            <li>Zero Crossing Rate</li>
+            <li>Skewness & Kurtosis</li>
+        </ul>
+
+        <h3>2. Frequency Domain Features</h3>
+        <ul>
+            <li>Power Spectral Density (PSD)</li>
+            <li>Delta (0.5–4 Hz)</li>
+            <li>Theta (4–8 Hz)</li>
+            <li>Alpha (8–13 Hz)</li>
+            <li>Beta (13–30 Hz)</li>
+        </ul>
+
+        <h3>3. Time-Frequency Analysis</h3>
+        <ul>
+            <li>Short-Time Fourier Transform (STFT)</li>
+            <li>Wavelet Transform</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Dimensionality Reduction (PCA)</h2>
+        <p>
+            Principal Component Analysis (PCA) was applied to reduce feature dimensionality while preserving important information.
+        </p>
+        <ul>
+            <li>Noise reduction</li>
+            <li>Feature optimization</li>
+            <li>Improved computational efficiency</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Classification using SVM</h2>
+        <p>
+            Support Vector Machine (SVM) was used to classify ictal and pre-ictal signals by finding an optimal decision boundary.
+        </p>
+        <ul>
+            <li>Hyperplane optimization</li>
+            <li>Kernel-based classification</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Classification using LDA</h2>
+        <p>
+            Linear Discriminant Analysis (LDA) was used to maximize class separability.
+        </p>
+        <ul>
+            <li>Maximizes between-class variance</li>
+            <li>Minimizes within-class variance</li>
+            <li>Provides interpretable results</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Conclusion</h2>
+        <p>
+            This project demonstrates a complete EEG signal processing pipeline including feature extraction, dimensionality reduction, and classification.
+        </p>
+        <ul>
+            <li>Effective seizure state classification</li>
+            <li>Reduced feature complexity</li>
+            <li>Foundation for real-time prediction systems</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Future Work</h2>
+        <ul>
+            <li>Deep learning models (CNN, LSTM)</li>
+            <li>Real-time EEG systems</li>
+            <li>Clinical applications</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 EEG Analysis Project</p>
+    </div>
+   
+  </section>
 
   
 <section class="project" id="pv-tilt-shahrekord">
