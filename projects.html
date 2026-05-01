@@ -30,6 +30,32 @@
     </nav>
   </header>
 
+
+ <section class="project">
+  <h3 id="16">Fault Detection in BLDC Motor Using Signal Processing <span class="date"> (2025)</span></h3>
+  <img src="image/dc-motor.jpg" alt="Fault Detection in BLDC Motor" class="project-img">
+  <p>
+This project focuses on analyzing the sound signals of four A2212 BLDC motors operating under three different conditions: healthy, propeller fault, and bearing fault. The core idea is to use acoustic signatures to detect mechanical issues before they lead to critical failures. The dataset contains 43 recorded audio files in WAV format, each around 10 seconds long, sampled at 16 kHz, making it suitable for both classical signal processing and modern machine learning approaches.
+  </p>
+   <p>
+To ensure reproducible and meaningful data, the motors are powered by an 11.1 V LiPo battery and driven through a 30 A ESC, while an ESP32 microcontroller controls their speed via the Blynk platform. The sounds are captured using an MCJR‑005 condenser microphone at a sampling rate of 16 kHz. This setup provides clean and consistent recordings of the motors in different health states, forming a solid foundation for condition monitoring and predictive maintenance (PdM) research.
+  </p>
+    <p>
+The first stage of the analysis is carried out in the time domain. Here, I extract raw signal features such as RMS, mean, zero-crossing rate, peak-to-peak amplitude, and autocorrelation. These features help characterize the instantaneous behavior and periodicity of the signal. For example, healthy motors tend to show more stable amplitude and regular oscillations, while propeller faults introduce stronger amplitude variations, and bearing faults often manifest as more irregular and noisy patterns over time.
+  </p>
+   <p>
+The second stage is frequency-domain analysis using the Fast Fourier Transform (FFT). By examining the spectral content, I can identify harmonics, dominant frequency components, and the distribution of energy across different frequency bands. Faults in the propeller and bearings often shift energy into specific low- or high-frequency ranges, or introduce additional spectral components not present in the healthy condition. These spectral differences provide discriminative features that are highly useful for automated fault classification.
+  </p>
+   <p>
+Finally, I apply time–frequency analysis methods such as the Short-Time Fourier Transform (STFT) and spectrograms to observe how the frequency content evolves over time. This joint time–frequency representation is especially helpful for detecting transient events, non-stationary noise, and localized fault patterns that may not be visible in pure time- or frequency-domain views. The resulting features and visualizations can be used to train advanced machine learning models, such as CNNs and LSTMs, enabling robust fault diagnosis and forming a practical basis for PdM systems in applications like drones and robotics. The dataset is publicly available on: https://data.mendeley.com/datasets/j4yr5fmhv4/1
+  </p>
+   
+  
+  </section>
+
+
+
+  
 <section class="project" id="pv-tilt-shahrekord">
     <h3 id="1">Optimization of PV Tilt Angle for Shahrekord Using PVsyst Data and ODE-Based Numerical Methods in Python
       <span class="date">(2025)</span>
